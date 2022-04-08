@@ -186,7 +186,6 @@ workflow tpp_peter {
     pepxml
     protxml
     mzxml
-    no_pool
 
     main:
     merged_protxml = run_proteinprophet(pepxml.collect())
@@ -201,21 +200,3 @@ workflow tpp_peter {
     emit:
     st_peter2matrix.out
 }
-
-
-// workflow tpp_peter {
-//     // St-Peter based quantification
-//     take:
-//     pepxml
-//     protxml
-//     //merged_protxml
-//     dda_folder
-
-//     dda_files = channel.fromPath("$dda_folder/*")
-//     st_peter(pepxml,
-// 	     protxml,
-// 	     mzxmls)
-
-//     // st_peter2matrix(merged_protxml,
-//     // 		    protxmls)
-// }
