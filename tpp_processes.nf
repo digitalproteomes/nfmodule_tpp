@@ -37,6 +37,7 @@ process comet_search {
 
 
 process xinteract {
+    errorStrategy 'ignore'
     tag "$pepxml"
     cpus "$xinteract_threads"
     publishDir 'Results/Comet', mode: 'link'
