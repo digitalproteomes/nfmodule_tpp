@@ -17,7 +17,7 @@ include {comet_search;
 	 protxml2tsv;
 	 filter_pep_tsv;
 	 proteinprophet;
-	 patch_progensis} from './tpp_processes.nf'
+	 patch_progenesis} from './tpp_processes.nf'
 
 
 workflow tpp_main {
