@@ -297,6 +297,6 @@ process patch_progenesis {
 
     script:
     """
-    xsltproc $progenesisxsl $pepxml > ${pepxml.getSimpleName}-progenesis.pep.xml
+    xsltproc $progenesisxsl $pepxml > ${pepxml.getSimpleName()}-progenesis.pep.xml
     """
 }
