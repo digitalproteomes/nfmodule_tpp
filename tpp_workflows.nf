@@ -209,6 +209,6 @@ workflow apply_progenesis_patch {
     pepxml
 
     main:
-    patch_progensis(pepxml,
+    patch_progenesis(pepxml,
 	       file("$baseDir/Xslt/progenesis.xsl"))
 }
