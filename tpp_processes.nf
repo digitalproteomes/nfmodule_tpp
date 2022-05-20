@@ -281,3 +281,22 @@ process filter_pep_tsv {
     filter_pep_pro.py -p $pepTsv -P $protTsv -o ${pepTsv.baseName}_filtered.tsv
     """
 }
+
+
+process patch_progenesis {
+    tag "$pepxml"
+
+    publishDir 'Results/Progenesis', mode: 'link'
+
+    input:
+    file pepxml
+    file progenesisxsl
+
+    output:
+    file "*-progenesis.pep.xml"
+
+    script:
+    """
+    xsltproc $progenesisxsl $pepxml > ${pepxml.getSimpleName}-progenesis.pep.xml
+    """
+}

@@ -200,3 +200,14 @@ workflow tpp_peter {
     emit:
     st_peter2matrix.out
 }
+
+
+workflow apply_progenesis_patch {
+    // Export pep and prot.xmls to tsv
+    take:
+    pepxml
+
+    main:
+    patch_progensis(pepxml,
+	       file("$baseDir/Xslt/progenesis.xsl"))
+}
