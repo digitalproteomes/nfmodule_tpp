@@ -34,7 +34,7 @@ workflow tpp_main {
     xinteract_threads
 
     main:
-    dda_files = channel.fromPath("$dda_folder/*")
+    dda_files = channel.fromPath("$dda_folder/*.{mzXML,mzML}")
     comet_search(dda_files,
 		 file(comet_params),
 		 file(protein_db),
