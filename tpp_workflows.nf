@@ -199,7 +199,8 @@ workflow tpp_peter {
 		    protxml.collect())
 
     emit:
-    st_peter2matrix.out
+    st_petermatrix = st_peter2matrix.out
+    protxmls = st_peter.out
 }
 
 
