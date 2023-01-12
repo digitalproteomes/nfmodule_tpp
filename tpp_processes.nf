@@ -65,7 +65,7 @@ process xinteract {
     path '*.ptm.ipro.pep-MODELS.html', emit: tppPepModelPtmOut, optional: true
     
     path '*.pep.xml.index'	// Catchall
-    path '*.pep.xml.pIstats'
+    path '*.pep.xml.pIstats', optional: true
 
     path '*.prot-MODELS.html', emit: tppProtModelOut, optional: true
     path '*.ipro.prot-MODELS.html', emit: tppProtModelIproOut, optional: true
@@ -298,5 +298,26 @@ process patch_progenesis {
     script:
     """
     xsltproc $progenesisxsl $pepxml > ${pepxml.getSimpleName()}-progenesis.pep.xml
+    """
+}
+
+
+// Extract the name of the mzXML/mzML file that was used to
+// generate a pep.xml file
+process get_pepxml_mzxml_tuples {
+    tag "$pepxml"
+
+    input:
+    file pepxml
+
+    output:
+    tuple env(PEPXML), env(MZXML)
+
+    script:
+    """
+    PEPXML=$pepxml
+    unset MZXML
+    MZXML=\$(xmlstarlet sel -N pepx="http://regis-web.systemsbiology.net/pepXML" -t -v '//pepx:msms_run_summary/@base_name' $pepxml)
+    MZXML=\${MZXML}\$(xmlstarlet sel -N pepx="http://regis-web.systemsbiology.net/pepXML" -t -v '//pepx:msms_run_summary/@raw_data' $pepxml)
     """
 }
